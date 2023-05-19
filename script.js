@@ -79,55 +79,171 @@ console.log(angoloGradi(190)); */
 console.log(creaAcronimo("Hyper Text Marckup Lenguages"));
  */
 //*Esercizio 9 EXTRA
-function caratteriDoppioni(stringa) {
-    let totale = [];
-    for (let i = 0; i < stringa.length; i++) {
-      let slices = stringa.slice(i +1);
-      for (let j = 0; j < slices.length; j++) {
-        let lettera = slices[j];
-        if (stringa[i] === lettera) {
-          let obj = totale.find(obj => obj.carattere === lettera);
-          if (!obj) {
-            totale.push({ carattere: lettera, n: 1 });
-          } else {
-            obj.n++;
-          }
-        }
-      }
+/*  function caratteriDoppioni(stringa) {
+  let totale = [];
+  for (let i = 0; i < stringa.length; i++) {
+    let carattere = stringa[i];
+    let duplicato = totale.find(obj => obj.carattere === carattere);//*Find restituisce il primo elemento trovato nell'array che soddisfa la funzione di test passata come parametro
+    if (!duplicato) {
+      totale.push({ carattere: carattere, n: 1 });
+    } else {
+      duplicato.n++;
     }
-    return totale;
   }
-  
-  console.log(caratteriDoppioni("papa"));
+  let maggiore = totale.sort((a, b) => b.n - a.n)[0];
+  return maggiore;
+}
+
+console.log(caratteriDoppioni("aaaahhhhhhhhhrr"));  */
+
+//*Esercizio 10 EXTRA
 /* 
-  function caratterePiuFrequente(stringa) {
-    let letteri = {};
-    let maxFrequenza = 0;
-    let caratterePiuFrequente = "";
+function sonoAnagrammi(stringa1, stringa2) {
+  // Rimuovi punteggiatura e spazi
+  stringa1 = stringa1.replace(/[^\w]/g, '');
+  stringa2 = stringa2.replace(/[^\w]/g, '');
 
-    for (let i = 0; i < stringa.length; i++) {
-      let carattere = stringa[i];
-      if (letteri[carattere]) {
-        letteri[carattere]++;
-      } else {
-        letteri[carattere] = 1;
-      }
+  // Converti entrambe le stringhe in minuscolo
+  stringa1 = stringa1.toLowerCase();
+  stringa2 = stringa2.toLowerCase();
 
-      if (letteri[carattere] > maxFrequenza) {
-        maxFrequenza = letteri[carattere];
-        caratterePiuFrequente = carattere;
-      }
+  // Ordina i caratteri delle due stringhe
+  stringa1 = stringa1.split('').sort().join('');
+  stringa2 = stringa2.split('').sort().join('');
+
+  // Confronta le due stringhe
+  return stringa1 === stringa2;
+}
+
+
+console.log(sonoAnagrammi("L a tte", "Tetal")); 
+ */
+//*Esercizio 11 EXTRA
+
+/* let lista =['carenti', 'incerta', 'espatrio'];
+let parola = 'carenti';
+
+function trovaAnagrami(parola, lista){
+    let anagrammi = [];
+    for(let i=0; i<lista.length; i++){
+        if(sonoAnagrammi(parola, lista[i])){
+            anagrammi.push(lista[i]);
+        }
     }
+    return anagrammi;
+} 
 
-    return caratterePiuFrequente;
+console.log(trovaAnagrami(parola, lista)); */
+
+//*Esercizio 12  EXTRA
+/* function trovaPalindroma(stringa){
+    stringa = stringa.replace(/[^\w]/g, '');
+    stringa.toLowerCase();
+    let parola = stringa.split("").reverse().join("");
+    if(stringa === parola)return true;
+    else return false;
+}
+console.log(trovaPalindroma("ai lati d' italia")); */
+
+//*Esercizio 13 EXTRA
+/* function numeroAlContrario(numero){
+    numero = numero.toString();
+    let numeroContrario = numero.split('').reverse().join('');
+    return numeroContrario;
+}
+
+console.log(numeroAlContrario(12345)); */
+
+
+//*Esercizio 14 EXTRA
+/* function scala(numero) {
+    let scala = [];
+    for (let i = 0; i < numero; i++) {
+      scala.push("#".repeat(i + 1));
+    }
+    return scala;
   }
-   console.log(caratterePiuFrequente("abbbbccc")); */
   
- 
+  console.log(scala(35)); */
 
-  //*Esercizio 10
+//*Esercizio 15 EXTRA
 
-/*   function stringheUguali(stringa1, stringa2){
-    if(stringa.split(" ")
+/* function stringaAlContrario(stringa){
+    return stringa.split("").reverse().join("");
+}
 
-  } */
+console.log(stringaAlContrario("ciao"));
+   */
+
+//*Esercizio 16 EXTRA
+/* let array = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
+function divideArray(array, y) {
+    let result = [];
+    for (let i = 0; i < array.length; i += y) {
+      result.push(array.slice(i, i + y));
+    }
+    return result;
+  }
+  
+  console.log(divideArray(array,2)); */
+
+
+  //*Esercizio 17 EXTRA
+  /* function stampaPiramide(x) {
+    for (let i = 1; i <= x; i++) {
+      let space = " ".repeat(x - i);
+      let blocks = "#".repeat(2 * i - 1);
+      console.log(space + blocks + space);
+    }
+  }
+  
+  stampaPiramide(6);
+ */
+
+//*Esercizio 18 EXTRA
+/* function generaSpirale(N) {
+    let matrice = [];
+    for (let i = 0; i < N; i++) {
+      matrice.push([]);
+    }
+  
+    let num = 1;
+    let startRow = 0;
+    let endRow = N - 1;
+    let startCol = 0;
+    let endCol = N - 1;
+  
+    while (startRow <= endRow && startCol <= endCol) {
+      // riga superiore
+      for (let i = startCol; i <= endCol; i++) {
+        matrice[startRow][i] = num++;
+      }
+      startRow++;
+  
+      // Colonna destra
+      for (let i = startRow; i <= endRow; i++) {
+        matrice[i][endCol] = num++;
+      }
+      endCol--;
+  
+      // riga inferiore
+      for (let i = endCol; i >= startCol; i--) {
+        matrice[endRow][i] = num++;
+      }
+      endRow--;
+  
+      // colonna sinistra
+      for (let i = endRow; i >= startRow; i--) {
+        matrice[i][startCol] = num++;
+      }
+      startCol++;
+    }
+  
+    return matrice;
+  }
+  
+  console.log(generaSpirale(4)); */
+
+  
+  
